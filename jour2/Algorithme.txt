@@ -1,0 +1,87 @@
+Etoile 1 :
+
+Variable :
+	data : fichier texte
+	ligne : chaîne de caractères
+	test : booléen
+	cpt_ok : entier
+	tab : tableau d'entier
+	dernier : entier
+	sens : chaîne de caractères
+Début
+	cpt_ok <- 0
+	Ouvrir data en lecture
+	Pour chaque ligne dans data Faire
+		test <- Vrai
+		tab <- les éléments de ligne en utilisant " " comme delimiteur
+		dernier <- tab[0]
+		sens <- "Aucun"
+		pour chaque actuelle de tab, privé de son premier élément
+			si sens = "Aucun" alors
+				si actuelle > dernier et abs(actuelle - dernier) <= 3 alors
+					sens <- "Croissant"
+				sinon si actuelle < dernier et abs(actuelle - dernier) <= 3 alors
+					sens <- "Decroissant"
+				sinon
+					test <- Faux
+				fsi
+			sinon si sens = "Croissant" alors
+				si actuelle <= dernier ou abs(actuelle - dernier) > 3 alors
+					test <- Faux
+				fsi
+			sinon si sens = "Decroissant" alors
+				si actuelle >= dernier ou abs(actuelle - dernier) > 3 alors
+					test <- Faux
+				fsi	
+			fsi
+			dernier <- actuelle
+		fpour
+		si test = Vrai alors
+			cpt_ok <- cpt_ok + 1
+		fsi						
+	Fpour
+Fin
+
+Etoile 2 :
+
+Variable :
+	data : fichier texte
+	ligne : chaîne de caractères
+	cpt_ok : entier
+	tab : tableau d'entier
+	dernier : entier
+	sens : chaîne de caractères
+	cpt_erreur : entier
+Début
+	cpt_ok <- 0
+	Ouvrir data en lecture
+	Pour chaque ligne dans data Faire
+		tab <- les éléments de ligne en utilisant " " comme delimiteur
+		dernier <- tab[0]
+		sens <- "Aucun"
+		cpt_erreur <- 0
+		pour chaque actuelle de tab, privé de son premier élément
+			si sens = "Aucun" alors
+				si actuelle > dernier et abs(actuelle - dernier) <= 3 alors
+					sens <- "Croissant"
+				sinon si actuelle < dernier et abs(actuelle - dernier) <= 3 alors
+					sens <- "Decroissant"
+				sinon
+					cpt_erreur <- cpt_erreur + 1
+				fsi
+			sinon si sens = "Croissant" alors
+				si actuelle <= dernier ou abs(actuelle - dernier) > 3 alors
+					cpt_erreur <- cpt_erreur + 1
+				fsi
+			sinon si sens = "Decroissant" alors
+				si actuelle >= dernier ou abs(actuelle - dernier) > 3 alors
+					cpt_erreur <- cpt_erreur + 1
+				fsi	
+			fsi
+			dernier <- actuelle
+		fpour
+		si cpt_erreur < 2 alors
+			cpt_ok <- cpt_ok + 1
+		fsi						
+	Fpour
+Fin

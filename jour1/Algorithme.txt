@@ -1,0 +1,45 @@
+Etoile 1 :
+
+Variables :
+	data : fichier texte
+	ligne : chaîne de caractères
+	eleDroite : tableau d'entier
+	eleGauche : tableau d'entier
+	somme : entier
+Début
+	Ouvrir data
+	pour chaque ligne dans data 
+		ajouter le nombre avant les espaces à eleGauche
+		ajouter le nombre après les espaces à eleDroite	
+	fpour
+	trier eleDroite
+	trier eleGauche
+	somme <- 0
+	pour indice de 0 à taille(eleDroite) - 1
+		somme <- somme + abs(eleDroite[indice] - eleGauche[indice])
+	fpour
+	Afficher somme 
+Fin
+
+Etoile 2 :
+
+Variables :
+	data : fichier texte
+	ligne : chaîne de caractères
+	eleDroite : tableau d'entier
+	eleGauche : tableau d'entier
+	somme : entier
+Début
+	Ouvrir data
+	pour chaque ligne dans data 
+		ajouter le nombre avant les espaces à eleGauche
+		ajouter le nombre après les espaces à eleDroite	
+	fpour
+	trier eleDroite
+	trier eleGauche
+	somme <- 0
+	pour indice de 0 à taille(eleDroite) - 1
+		somme <- somme + (eleGauche[i] * nombre de fois que eleGauche[i] se trouve dans eleDroite) 
+	fpour
+	Afficher somme 
+Fin
