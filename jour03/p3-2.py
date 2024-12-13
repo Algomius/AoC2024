@@ -1,29 +1,29 @@
-f = open("input.txt", "r")
+fic = open("input.txt", "r")
 
 somme = 0
-enable = True
+testCumul = True
 
-for l in f:
-    for indice in range(len(l)):
-        if l[indice:indice+4] == "mul(":
+for ligne in fic:
+    for indice in range(len(ligne)):
+        if ligne[indice:indice+4] == "mul(" and testCumul == True:
             n1 = 0
-            i= 4
-            while l[indice + i] >= '0' and l[indice + i] <= '9':
-                n1 = n1 * 10 + int(l[indice + i])
-                i += 1
-            
-            if (l[indice + i] == "," and n1 < 1000):
-                i += 1
-                n2 = 0
-                while l[indice + i] >= '0' and l[indice + i] <= '9':
-                    n2 = n2 * 10 + int(l[indice + i])
-                    i += 1
+            taille = 4
+            while '0' <= ligne[indice + taille] <= '9':
+                n1 = n1 * 10 + int(ligne[indice + taille])
+                taille += 1
 
-                if (l[indice + i] == ")" and n2 < 1000 and enable == True):
-                    somme += n1 * n2 
-        elif l[indice:indice+4] == "do()":
-            enable = True
-        elif l[indice:indice+7] == "don't()":
-            enable = False
-    
+            if (ligne[indice + taille] == "," and n1 < 1000):
+                taille += 1
+                n2 = 0
+                while '0' <= ligne[indice + taille] <= '9':
+                    n2 = n2 * 10 + int(ligne[indice + taille])
+                    taille += 1
+
+                if (ligne[indice + taille] == ")" and n2 < 1000):
+                    somme += n1 * n2
+        elif ligne[indice:indice+4] == "do()":
+            testCumul = True
+        elif ligne[indice:indice+7] == "don't()":
+            testCumul = False
+
 print(somme)

@@ -1,0 +1,89 @@
+Etoile 1 :
+
+Variables :
+	somme : entier
+	n1 : entier
+	n2 : entier
+	indice : entier
+	fic : fichier
+	ligne : chaîne de carctères
+	taille : entier
+Début
+	fic <- ouvrir "input.txt" en lecture
+	somme <- 0
+	Pour chaque ligne du fichier
+		indice <- position du prochain "mul(" dans ligne
+		Tant que l'indice n'est pas null
+			n1 <- 0 
+			taille <- 4
+			Tant que '0' <= ligne[indice + taille] <= '9'
+				n1 = n1 * 10 + entier(ligne[indice + taille])
+				taille <- taille + 1
+			Ftant
+
+			si ligne[indice + taille] = "," et n1 < 1000 alors
+				taille <- taille +1 
+				n2 <- 0
+				Tant que '0' <= ligne[indice + taille] <= '9'
+					n2 = n2 * 10 + entier(ligne[indice + taille])
+					taille <- taille + 1
+				Ftant
+
+				si ligne[indice + taille] = ")" et n2 < 1000 alors
+					somme <- somme + n1 * n2								
+			fsi
+
+			ligne <- supprimer les indice + taille
+			indice <- position du prochain "mul(" dans ligne
+		Ftant
+	Fpour
+	Afficher somme
+Fin
+
+Etoile 2 :
+
+Variables :
+	somme : entier
+	n1 : entier
+	n2 : entier
+	indice : entier
+	fic : fichier
+	ligne : chaîne de caractères
+	taille : entier
+	testCumul : booléen
+	lettre : caractère
+Début
+	fic <- ouvrir "input.txt" en lecture
+	somme <- 0
+	testCumul <- Vrai
+	Pour chaque ligne du fichier
+		pour indice de 0 à longueur(ligne) - 1
+			si ligne[indice:indice+4] = "mul(" et testCumul = Vrai alors
+				indice <- indice + 4
+				n1 <- 0 
+				taille <- 0
+				Tant que '0' <= ligne[indice + taille] <= '9'
+					n1 = n1 * 10 + entier(ligne[indice + taille])
+					taille <- taille + 1
+				Ftant
+
+				si ligne[indice + taille] = "," et n1 < 1000 alors
+					taille <- taille +1 
+					n2 <- 0
+					Tant que '0' <= ligne[indice + taille] <= '9'
+						n2 = n2 * 10 + entier(ligne[indice + taille])
+						taille <- taille + 1
+					Ftant
+
+					si ligne[indice + taille] = ")" et n2 < 1000 alors
+						somme <- somme + n1 * n2	
+			sinon si ligne[indice:indice+4] = "do()" alors
+				testCumul = Vrai
+			sinon si ligne[indice:indice+7] = "don't()" alors
+				testCumul = Faux								
+			fsi
+
+		Fpour
+	Fpour
+	Afficher somme
+Fin
