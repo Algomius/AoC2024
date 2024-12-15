@@ -1,0 +1,93 @@
+Etoile 1 :
+
+Variables :
+	fic : fichier de données
+	ligne : chaîne de caractères
+	somme : entier
+	ordList : tableau de couple (entier page depart, entier page arrivée)
+	ordre : booléen
+	feuilles : tableau d'entier
+	test : booléen
+
+Début
+	ordre <- Vrai
+	somme <- 0
+	ordList <- Vide 
+
+	fic <- Ouvrir le fichier de données
+	pour chaque ligne dans fic
+		si ligne = "" alors
+			ordre <- False
+		sinon si ordre = Vrai
+			ajouter (ligne avant "|", ligne après la "|") à ordList
+		sinon 
+			feuilles <- diviser ligne sur le caractère ","
+			test <- Vrai
+			pour premiere, seconde dans ordList
+				si premiere dans feuilles et seconde dans feuilles alors
+					si index de premiere dans feuilles > index de seconde dans feuilles alors
+						test <- Faux
+					fsi
+				fsi
+			fpour
+			si test = Vrai alors
+				somme <- somme + feuilles[longueur(feuilles) // 2]
+			fsi			
+		fsi
+	fpour
+
+	Afficher somme
+Fin
+
+Etoile 2 :
+
+Variables :
+	fic : fichier de données
+	ligne : chaîne de caractères
+	somme : entier
+	ordList : tableau de couple (entier page depart, entier page arrivée)
+	ordre : booléen
+	feuilles : tableau d'entier
+	test : booléen
+	change : booléen
+	indPremier : entier
+	indSecond : entier
+
+Début
+	ordre <- Vrai
+	somme <- 0
+	ordList <- Vide 
+
+	fic <- Ouvrir le fichier de données
+	pour chaque ligne dans fic
+		si ligne = "" alors
+			ordre <- False
+		sinon si ordre = Vrai
+			ajouter (ligne avant "|", ligne après la "|") à ordList
+		sinon 
+			feuilles <- diviser ligne sur le caractère ","
+			test <- Vrai
+			change <- Vrai
+			Tant que change = Vrai
+				change <- Faux
+				pour premiere, seconde dans ordList
+					si premiere dans feuilles et seconde dans feuilles alors
+						indPremier <- index de premiere dans feuilles
+						indSecond <- index de seconde dans feuilles
+						si indPremier  > indSecond  alors
+							test <- Faux
+							echanger dans feuilles les élément indPremier et indSecond
+							change <- Vrai
+						fsi
+					fsi
+				fpour
+			Fin tant
+
+			si test = Faux alors
+				somme <- somme + feuilles[longueur(feuilles) // 2]
+			fsi			
+		fsi
+	fpour
+
+	Afficher somme
+Fin

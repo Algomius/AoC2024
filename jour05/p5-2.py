@@ -1,33 +1,30 @@
-f = open("input.txt", "r")
+fic = open("input.txt", "r")
 
-order = True
+ordre = True
+somme = 0
 ordList = []
 
-somme = 0
-
-for l in f:
-    ligne = l[:-1]
+for ligne in fic:
+    ligne = ligne[:-1]
     if ligne == "":
-        order = False
-    elif order:
-        ordList.append((int(ligne[0:2]), int(ligne[3:5])))
+        ordre = False
+    elif ordre:
+        ordList.append((int(ligne[0:2]),int(ligne[3:5])))
     else:
-        feuilles = [ int(x) for x in ligne.split(',')]
-        isValid = True
+        feuilles = [int(x) for x in ligne.split(",")]
+        test = True
         change = True
         while change:
             change = False
-            for dep, arr in ordList:
-                if dep in feuilles and arr in feuilles:
-                    indexDep = feuilles.index(dep)
-                    indexArr = feuilles.index(arr)
-                    if indexDep > indexArr:
-                        isValid = False
-                        feuilles[indexDep],feuilles[indexArr] = feuilles[indexArr], feuilles[indexDep] 
+            for premier, second in ordList:
+                if premier in feuilles and second in feuilles:
+                    indPremier = feuilles.index(premier)
+                    indSecond = feuilles.index(second)
+                    if indPremier > indSecond:
+                        test = False
+                        feuilles[indPremier], feuilles[indSecond] = feuilles[indSecond], feuilles[indPremier]
                         change = True
-
-        if not isValid:
-            somme += feuilles[len(feuilles)//2]
-
+        if not test:
+            somme += feuilles[len(feuilles) // 2]
 
 print(somme)
