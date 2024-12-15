@@ -1,21 +1,20 @@
-f = open("input.txt", "r")
+fic = open("input.txt", "r")
 
-m = []
+grille = []
 
-for l in f:
-    lettres = l[:-1]
-    m.append(lettres)
+for ligne in fic:
+	grille.append(ligne[:-1])
+	
+cpt_xmas = 0
 
-cpt = 0
-for i in range(len(m)):
-    for j in range(len(m[0])):
-        if m[i][j] == "X":
+for i in range(len(grille)):
+     for j in range(len(grille[0])):
+        if grille[i][j] == "X":
             for decH in [-1, 0, 1]:
                 for decV in [-1, 0, 1]:
-                    if i+(3*decH) >= 0 and i+(3*decH) < len(m[0]) and j+(3*decV) >= 0 and j+(3*decV) < len(m):
-                        if m[i+(1*decH)][j+(1*decV)] == "M" and \
-                            m[i+(2*decH)][j+(2*decV)] == "A" and \
-                            m[i+(3*decH)][j+(3*decV)] == "S":
-                                cpt += 1
-
-print(cpt)
+                    if 0 <= i+(3*decV) < len(grille) and 0 <= j+(3*decH) < len(grille[0]):
+                        if grille[i+(1*decV)][j+(1*decH)] == "M" and \
+                            grille[i+(2*decV)][j+(2*decH)] == "A" and \
+                            grille[i+(3*decV)][j+(3*decH)] == "S":
+                            cpt_xmas += 1 
+print(cpt_xmas) 
